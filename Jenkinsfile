@@ -20,15 +20,7 @@ pipeline {
       }
     } 
    
-      
-     stage('Docker run') {
-      agent any
-      steps {
-        sh 'docker run -p 8081:8080 varshagopal/boot-jenkins-docker'
-      }
-    } 
-    
-    stage('Docker Push') {
+       stage('Docker Push') {
       agent any
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
@@ -38,5 +30,14 @@ pipeline {
       }
 
     }
+    
+     stage('Docker run') {
+      agent any
+      steps {
+        sh 'docker run -p 8081:8080 varshagopal/boot-jenkins-docker'
+      }
+    } 
+    
+   
   }
 }
