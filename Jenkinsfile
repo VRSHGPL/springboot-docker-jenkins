@@ -1,6 +1,5 @@
 pipeline {
-  agent none
-  
+  agent any  
   tools {
     maven 'mvn-3.5.4'
   }
@@ -10,8 +9,8 @@ pipeline {
   }
   
   stages {
-    stage('Maven Install') {
-      
+    stage('Maven Install') {     
+	agent any	
       steps {
         sh 'mvn clean install'
       }
