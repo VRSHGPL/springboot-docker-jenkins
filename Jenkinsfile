@@ -1,9 +1,9 @@
 pipeline {
   agent none
   
-  //tools {
-   // maven 'mvn-3.5.4'
-  //}
+  tools {
+    maven 'mvn-3.5.4'
+  }
   
   options {
     timeout(1000)
@@ -11,12 +11,7 @@ pipeline {
   
   stages {
     stage('Maven Install') {
-      agent {
-       docker {
-          image 'maven:3.5.0'
-       }
-      }
-	
+      
       steps {
         sh 'mvn clean install'
       }
